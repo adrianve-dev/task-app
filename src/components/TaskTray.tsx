@@ -15,7 +15,7 @@ const TaskTray = (props: TaskTrayProps) => {
     return (
         <div>
             {tasks.map((t) => <TaskItem key={t.id} task={t} toggleTask={toggleTask} deleteTask={deleteTask} updateTask={updateTask} />)}
-            <button onClick={() => {completeAll(tasks)}}>Mark All as Complete</button>
+            {tasks.length > 0 && <button onClick={() => {completeAll(tasks)}}>Mark All as Complete</button>}
         </div>
     )
 }

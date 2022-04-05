@@ -1,39 +1,20 @@
-import * as React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { CompletedTask, ReadonlyTask } from './Types/tasks';
-import { completeAll, deleteTask, toggleTask } from './utils/taskUtils';
-import TaskTray from './components/TaskTray';
-import AddTaskContainer from './components/AddTaskContainer';
+import * as React from 'react'
+import logo from './logo.svg'
+import './App.css'
+import { CompletedTask, ReadonlyTask } from './Types/tasks'
+import { completeAll, deleteTask, toggleTask } from './utils/taskUtils'
+import TaskTray from './components/TaskTray'
+import AddTaskContainer from './components/AddTaskContainer'
 
 function App() {
-  // let tasks: Task[] = 
-  const [tasks, setTasks] = React.useState([
-    {
-      id: 0,
-      text: 'Click Me...',
-      done: false
-    },
-    {
-      id: 1,
-      text: 'Click Me Too...',
-      done: false
-    },
-    {
-      id: 2,
-      text: 'Click Me Also...',
-      done: false
-    },
-  ])
+  const [tasks, setTasks] = React.useState<ReadonlyTask[]>([])
   
   const handleCompleteAll = () => {
     const completedTasks: CompletedTask[] = completeAll(tasks)
-    console.log('App: completedTasks: ', completedTasks)
     setTasks(completedTasks)
   }
 
-  const handleDeleteTask = (task:ReadonlyTask) => { 
-    console.log('deleting task: ', task)
+  const handleDeleteTask = (task:ReadonlyTask) => {
     const updatedTasks: ReadonlyTask[] = deleteTask(tasks, task)
     setTasks(updatedTasks)
   }
@@ -52,17 +33,25 @@ function App() {
     // do not mutate
     let updatedTasks = [...tasks]
 
-    const newTask: ReadonlyTask = {
-      id: tasks[tasks.length - 1].id + 1,
-      text,
-      done: false,
-    }
-    
-    const currLength = updatedTasks.push(newTask)
+    if(updatedTasks.length === 0) {
+      setTasks([{
+        id: 0,
+        text,
+        done: false,
+      }])
+    } else {
+      const newTask: ReadonlyTask = {
+        id: tasks[tasks.length - 1].id + 1,
+        text,
+        done: false,
+      }
+      
+      const currLength = updatedTasks.push(newTask)
 
-    if(currLength > tasks.length) {
-      setTasks(updatedTasks)
-    }
+      if(currLength > tasks.length) {
+        setTasks(updatedTasks)
+      }
+    }    
   }
 
   const handleUpdateTask = (task: ReadonlyTask, text: string) => {
@@ -86,7 +75,7 @@ function App() {
           <AddTaskContainer text={''} addTask={handleSaveTask} />
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

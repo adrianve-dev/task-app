@@ -6,14 +6,15 @@ interface TaskTrayProps {
     tasks: ReadonlyTask[]
     completeAll: Function
     toggleTask: Function
+    deleteTask: Function
 }
 
 const TaskTray = (props: TaskTrayProps) => {
-    const { tasks, completeAll, toggleTask } = props
+    const { tasks, completeAll, toggleTask, deleteTask } = props
     console.log('tasks: ', tasks)
     return (
         <div>
-            {tasks.map((t) => <TaskItem key={t.id} task={t} toggleTask={toggleTask} />)}
+            {tasks.map((t) => <TaskItem key={t.id} task={t} toggleTask={toggleTask} deleteTask={deleteTask} />)}
             <button onClick={() => {completeAll(tasks)}}>Mark All as Complete</button>
         </div>
     )

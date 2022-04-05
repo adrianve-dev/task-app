@@ -2,7 +2,7 @@ import * as React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Task, CompletedTask, ReadonlyTask } from './Types/tasks';
-import { completeAll, toggleTask } from './utils/taskUtils';
+import { completeAll, deleteTask, toggleTask } from './utils/taskUtils';
 import TaskTray from './components/TaskTray';
 
 function App() {
@@ -41,11 +41,16 @@ function App() {
     setTasks(updatedTasks)
   }
 
+  const handleDeleteTask = (task:ReadonlyTask) => {
+    const updatedTasks: ReadonlyTask[] = deleteTask(tasks, task)
+    setTasks(updatedTasks)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-          <TaskTray tasks={tasks} completeAll={handleCompleteAll} toggleTask={handleToggleTask} />
+          <TaskTray tasks={tasks} completeAll={handleCompleteAll} toggleTask={handleToggleTask} deleteTask={handleDeleteTask} />
       </header>
     </div>
   );

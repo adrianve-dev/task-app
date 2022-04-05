@@ -1,12 +1,12 @@
 import * as React from "react"
 
-interface TaskProps {
+interface TaskEditProps {
     text: string
     onChange: Function
     onBlur: Function
 }
 
-const TaskEdit = (props:TaskProps) => {
+const TaskEdit = (props:TaskEditProps) => {
     const { text, onChange, onBlur } = props
 
     return (

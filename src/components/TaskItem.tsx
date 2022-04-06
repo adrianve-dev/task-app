@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Task, ReadonlyTask } from "../Types/tasks"
+import { Task } from "../Types/tasks"
 import TextEdit from "./TextEdit"
 import { Badge, Button, Col, Input, Row } from 'reactstrap'
 import { placeToString } from "../utils/placeUtils"

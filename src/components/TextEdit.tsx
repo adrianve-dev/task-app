@@ -1,12 +1,12 @@
 import * as React from "react"
 
-interface TaskEditProps {
+interface TextEditProps {
     text: string
     onChange: Function
     onBlur: Function
 }
 
-const TaskEdit = (props:TaskEditProps) => {
+const TextEdit = (props:TextEditProps) => {
     const { text, onChange, onBlur } = props
 
     return (
@@ -20,4 +20,4 @@ const TaskEdit = (props:TaskEditProps) => {
     )
 }
 
-export default TaskEdit
+export default TextEdit

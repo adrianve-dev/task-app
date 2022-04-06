@@ -1,5 +1,5 @@
 import * as React from 'react'
-import TaskEdit from './TaskEdit'
+import TextEdit from './TextEdit'
 
 interface AddTaskContainerProps {
     text: string
@@ -21,7 +21,7 @@ const AddTaskContainer = (props: AddTaskContainerProps): JSX.Element => {
         setText('')
     }
 
-    if(isAdding) return <TaskEdit text={_text} onChange={handleTextChange} onBlur={handleSaveTask} />
+    if(isAdding) return <TextEdit text={_text} onChange={handleTextChange} onBlur={handleSaveTask} />
     
     return (
         <button onClick={() => setIsAdding(!isAdding)}>

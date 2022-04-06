@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Task } from "../Types/tasks"
-import TaskEdit from "./TaskEdit"
+import TextEdit from "./TextEdit"
 
 interface TaskProps {
     task: Task
@@ -28,7 +28,7 @@ const TaskItem = (props:TaskProps): JSX.Element => {
                                 onClick={() => handleSetEditing()}>
                                     {text}
                             </p>
-                            : <TaskEdit 
+                            : <TextEdit 
                                 text={text} 
                                 onChange={handleTextChange} 
                                 onBlur={handleSetEditing} 

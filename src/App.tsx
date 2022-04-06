@@ -2,6 +2,7 @@ import * as React from 'react'
 import logo from './logo.svg'
 import './App.css'
 import { CompletedTask, ReadonlyTask } from './Types/tasks'
+import { Place } from './Types/place'
 import { completeAll, deleteTask, toggleTask } from './utils/taskUtils'
 import TaskTray from './components/TaskTray'
 import AddTaskContainer from './components/AddTaskContainer'
@@ -56,11 +57,34 @@ function App() {
   }
 
   const handleUpdateTask = (task: ReadonlyTask, text: string) => {
+    if(!text) return
     const updatedTasks = tasks.map((t) => {
       if(t.id === task.id) return {
         id: task.id,
         text,
         done: task.done,
+      } 
+      else return t
+    })
+
+    setTasks(updatedTasks)
+  }
+
+  const handleUpdatePlace = (task: ReadonlyTask, value: string) => {
+    // empty text
+    if(value === undefined || value === '') return
+    let place: Place
+
+    if(value.toLowerCase() === 'home') place = 'home'
+    else if(value.toLowerCase() === 'work') place = 'work'
+    else place = {custom: value}
+
+    const updatedTasks = tasks.map((t) => {
+      if(t.id === task.id) return {
+        id: task.id,
+        text: task.text,
+        done: task.done,
+        place,
       } 
       else return t
     })
@@ -74,7 +98,7 @@ function App() {
       <h1>Task List</h1>
       <hr style={{width:'100%'}} />
       <Container className="App p-3" fluid>
-          <TaskTray tasks={tasks} completeAll={handleCompleteAll} toggleTask={handleToggleTask} deleteTask={handleDeleteTask} updateTask={handleUpdateTask} />
+          <TaskTray tasks={tasks} completeAll={handleCompleteAll} toggleTask={handleToggleTask} deleteTask={handleDeleteTask} updateTask={handleUpdateTask}  addPlace={handleUpdatePlace} />
           <hr />
           <AddTaskContainer text={''} addTask={handleSaveTask} />
       </Container>

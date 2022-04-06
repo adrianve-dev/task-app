@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Task } from "../Types/tasks"
+import { Task, ReadonlyTask } from "../Types/tasks"
 import TextEdit from "./TextEdit"
 import { Badge, Button, Col, Input, Row } from 'reactstrap'
 import { placeToString } from "../utils/placeUtils"
@@ -9,12 +9,15 @@ interface TaskProps {
     toggleTask: Function
     deleteTask: Function
     updateTask: Function
+    addPlace: Function
 }
 
 const TaskItem = (props:TaskProps): JSX.Element => {
-    const { task, toggleTask, deleteTask, updateTask } = props
+    const { task, toggleTask, deleteTask, updateTask, addPlace } = props
     const [text, setText] = React.useState(task.text)
+    const [place, setPlace] = React.useState('')
     const [editing, setEditing] = React.useState(false)
+    const [editingPlace, setEditingPlace] = React.useState(false)
 
     const handleTextChange = (value: string) => {
         updateTask(task, value)
@@ -23,6 +26,15 @@ const TaskItem = (props:TaskProps): JSX.Element => {
 
     const handleSetEditing = () => {
         setEditing(!editing)
+    }
+
+    const handlePlaceChange = (value: string) => {
+        setPlace(value)
+    }
+
+    const handleAddPlace = (value: string) => {
+        addPlace(task, value)
+        setEditingPlace(false)
     }
 
     const textElement = !editing
@@ -37,14 +49,21 @@ const TaskItem = (props:TaskProps): JSX.Element => {
                                 onChange={handleTextChange} 
                                 onBlur={handleSetEditing} 
                             />
+
     const placeElement = task.place
-                            ? <Row> {placeToString(task.place)} </Row>
-                            : <Badge color='dark' pill>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                                </svg>
-                                <span className='mx-2 align-middle'>Place</span>
-                            </Badge>
+                            ? <Badge> {placeToString(task.place)} </Badge>
+                            : !editingPlace 
+                                ? <Badge color='dark' pill onClick={() => setEditingPlace(true)}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                                    </svg>
+                                    <span className='mx-2 align-middle'>Place</span>
+                                </Badge>
+                                : <TextEdit 
+                                    text={place} 
+                                    onChange={handlePlaceChange} 
+                                    onBlur={handleAddPlace} 
+                                />
 
     return (
         <>

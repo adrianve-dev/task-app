@@ -18,7 +18,7 @@ const TextEdit = (props:TextEditProps) => {
             value={text}
             placeholder='Type your task here...'
             onChange={(e) => onChange(e.target.value)} 
-            onBlur={() => onBlur()}
+            onBlur={(e) => onBlur(e.target.value)}
         />
     )
 }

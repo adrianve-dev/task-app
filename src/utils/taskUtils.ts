@@ -11,7 +11,6 @@ export const completeAll = (tasks: readonly ReadonlyTask[]): CompletedTask[] => 
 }
 
 export const deleteTask = (tasks: readonly ReadonlyTask[], task: ReadonlyTask): ReadonlyTask[] => {
-    console.log('Delete Tasks: tasks, task', tasks, task)
     return tasks.filter((t) => t.id !== task.id)
 }
 

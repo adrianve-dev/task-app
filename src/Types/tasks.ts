@@ -1,13 +1,16 @@
-// Readonly<...> a *mapped type*
-// can also create new readonly type like:
-// type ReadonlyTask = Readonly<Task>
+import { Place } from "./place"
+
 // where Task is not readonly
 export type Task = {
     id: number
     text: string
     done: boolean
+    place?: Place
 }
 
+// Readonly<...> a *mapped type*
+// can also create new readonly type like:
+// type ReadonlyTask = Readonly<Task>
 export type ReadonlyTask = Readonly<Task>
 
 /* 

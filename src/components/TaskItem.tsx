@@ -47,7 +47,8 @@ const TaskItem = (props:TaskProps): JSX.Element => {
                             : <TextEdit 
                                 text={text} 
                                 onChange={handleTextChange} 
-                                onBlur={handleSetEditing} 
+                                onBlur={handleSetEditing}
+                                placeholder='Type your task here...'
                             />
 
     const placeElement = task.place
@@ -62,7 +63,8 @@ const TaskItem = (props:TaskProps): JSX.Element => {
                                 : <TextEdit 
                                     text={place} 
                                     onChange={handlePlaceChange} 
-                                    onBlur={handleAddPlace} 
+                                    onBlur={handleAddPlace}
+                                    placeholder='Task place...'
                                 />
 
     return (

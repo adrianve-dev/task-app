@@ -5,10 +5,11 @@ interface TextEditProps {
     text: string
     onChange: Function
     onBlur: Function
+    placeholder: string
 }
 
 const TextEdit = (props:TextEditProps) => {
-    const { text, onChange, onBlur } = props
+    const { text, onChange, onBlur, placeholder } = props
 
     return (
         <Input
@@ -16,7 +17,7 @@ const TextEdit = (props:TextEditProps) => {
             autoFocus
             type='text'
             value={text}
-            placeholder='Type your task here...'
+            placeholder={placeholder}
             onChange={(e) => onChange(e.target.value)} 
             onBlur={(e) => onBlur(e.target.value)}
         />

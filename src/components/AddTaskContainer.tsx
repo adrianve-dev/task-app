@@ -24,7 +24,7 @@ const AddTaskContainer = (props: AddTaskContainerProps): JSX.Element => {
 
     if(isAdding) return (
         <Row>
-            <TextEdit text={_text} onChange={handleTextChange} onBlur={handleSaveTask} />
+            <TextEdit text={_text} onChange={handleTextChange} onBlur={handleSaveTask} placeholder='Type your task here...' />
         </Row>
     )
     

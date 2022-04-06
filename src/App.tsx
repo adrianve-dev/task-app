@@ -5,6 +5,7 @@ import { CompletedTask, ReadonlyTask } from './Types/tasks'
 import { completeAll, deleteTask, toggleTask } from './utils/taskUtils'
 import TaskTray from './components/TaskTray'
 import AddTaskContainer from './components/AddTaskContainer'
+import { Container } from 'reactstrap'
 
 function App() {
   const [tasks, setTasks] = React.useState<ReadonlyTask[]>([])
@@ -68,13 +69,12 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <Container className="App p-3" fluid>
         <img src={logo} className="App-logo" alt="logo" />
-          <TaskTray tasks={tasks} completeAll={handleCompleteAll} toggleTask={handleToggleTask} deleteTask={handleDeleteTask} updateTask={handleUpdateTask} />
-          <AddTaskContainer text={''} addTask={handleSaveTask} />
-      </header>
-    </div>
+        <TaskTray tasks={tasks} completeAll={handleCompleteAll} toggleTask={handleToggleTask} deleteTask={handleDeleteTask} updateTask={handleUpdateTask} />
+        <hr />
+        <AddTaskContainer text={''} addTask={handleSaveTask} />
+    </Container>
   )
 }
 

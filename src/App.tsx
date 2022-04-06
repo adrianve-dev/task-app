@@ -69,12 +69,16 @@ function App() {
   }
 
   return (
-    <Container className="App p-3" fluid>
-        <img src={logo} className="App-logo" alt="logo" />
-        <TaskTray tasks={tasks} completeAll={handleCompleteAll} toggleTask={handleToggleTask} deleteTask={handleDeleteTask} updateTask={handleUpdateTask} />
-        <hr />
-        <AddTaskContainer text={''} addTask={handleSaveTask} />
-    </Container>
+    <>
+      <img src={logo} className="App-logo" alt="logo" />
+      <h1>Task List</h1>
+      <hr style={{width:'100%'}} />
+      <Container className="App p-3" fluid>
+          <TaskTray tasks={tasks} completeAll={handleCompleteAll} toggleTask={handleToggleTask} deleteTask={handleDeleteTask} updateTask={handleUpdateTask} />
+          <hr />
+          <AddTaskContainer text={''} addTask={handleSaveTask} />
+      </Container>
+    </>
   )
 }
 

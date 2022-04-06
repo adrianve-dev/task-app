@@ -11,6 +11,7 @@ import { Container } from 'reactstrap'
 function App() {
   const [tasks, setTasks] = React.useState<ReadonlyTask[]>([])
   
+  //#region Handlers
   const handleCompleteAll = () => {
     const completedTasks: CompletedTask[] = completeAll(tasks)
     setTasks(completedTasks)
@@ -63,6 +64,7 @@ function App() {
         id: task.id,
         text,
         done: task.done,
+        place: t.place,
       } 
       else return t
     })
@@ -91,6 +93,8 @@ function App() {
 
     setTasks(updatedTasks)
   }
+
+  //#endregion
 
   return (
     <>

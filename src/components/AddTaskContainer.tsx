@@ -1,5 +1,6 @@
 import * as React from 'react'
 import TextEdit from './TextEdit'
+import { Button, Row } from 'reactstrap'
 
 interface AddTaskContainerProps {
     text: string
@@ -21,12 +22,18 @@ const AddTaskContainer = (props: AddTaskContainerProps): JSX.Element => {
         setText('')
     }
 
-    if(isAdding) return <TextEdit text={_text} onChange={handleTextChange} onBlur={handleSaveTask} />
+    if(isAdding) return (
+        <Row>
+            <TextEdit text={_text} onChange={handleTextChange} onBlur={handleSaveTask} />
+        </Row>
+    )
     
     return (
-        <button onClick={() => setIsAdding(!isAdding)}>
-            Add Task
-        </button>
+        <Row>
+            <Button className='my-3' color="primary" onClick={() => setIsAdding(!isAdding)} block>
+                Add Task
+            </Button>
+        </Row>
     )
 }
 

@@ -1,4 +1,5 @@
 import * as React from "react"
+import { Input } from 'reactstrap'
 
 interface TextEditProps {
     text: string
@@ -10,10 +11,12 @@ const TextEdit = (props:TextEditProps) => {
     const { text, onChange, onBlur } = props
 
     return (
-        <input style={{display:'inline',}} 
+        <Input
+            className='align-middle' 
             autoFocus
             type='text'
-            value={text} 
+            value={text}
+            placeholder='Type your task here...'
             onChange={(e) => onChange(e.target.value)} 
             onBlur={() => onBlur()}
         />

@@ -42,7 +42,7 @@ const TaskItem = (props:TaskProps): JSX.Element => {
                                 className='text-left' 
                                 style={{textAlign:'left'}}
                                 onClick={() => setEditing(!editing)}>
-                                    {text}
+                                    {!task.done ? text : <del className='text-muted'>{text}</del>}
                             </p>
                             : <TextEdit 
                                 text={text} 

@@ -14,6 +14,7 @@ interface TaskTrayProps {
 
 const TaskTray = (props: TaskTrayProps) => {
     const { tasks, completeAll, toggleTask, deleteTask, updateTask, addPlace } = props
+    if(tasks.length === 0) return <p className='text-uppercase text-muted'>No Tasks to complete</p>
     return (
         <>
             {tasks.map((t) => <TaskItem key={t.id} task={t} toggleTask={toggleTask} deleteTask={deleteTask} updateTask={updateTask} addPlace={addPlace}/>)}

@@ -20,11 +20,11 @@ const TaskItem = (props:TaskProps): JSX.Element => {
     const [editingPlace, setEditingPlace] = React.useState(false)
 
     const handleTextChange = (value: string) => {
-        updateTask(task, value)
         setText(value)
     }
 
-    const handleSetEditing = () => {
+    const handleTaskUpdate = (value: string) => {
+        updateTask(task, value)
         setEditing(!editing)
     }
 
@@ -41,13 +41,13 @@ const TaskItem = (props:TaskProps): JSX.Element => {
                             ? <p 
                                 className='text-left' 
                                 style={{textAlign:'left'}}
-                                onClick={() => handleSetEditing()}>
+                                onClick={() => setEditing(!editing)}>
                                     {text}
                             </p>
                             : <TextEdit 
                                 text={text} 
                                 onChange={handleTextChange} 
-                                onBlur={handleSetEditing}
+                                onBlur={handleTaskUpdate}
                                 placeholder='Type your task here...'
                             />
 

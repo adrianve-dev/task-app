@@ -58,7 +58,11 @@ function App() {
   }
 
   const handleUpdateTask = (task: ReadonlyTask, text: string) => {
-    if(!text) return
+    // just delete if no text
+    if(!text) {
+      handleDeleteTask(task)
+      return
+    }
     const updatedTasks = tasks.map((t) => {
       if(t.id === task.id) return {
         id: task.id,

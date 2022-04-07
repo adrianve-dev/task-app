@@ -52,7 +52,7 @@ const TaskItem = (props:TaskProps): JSX.Element => {
                             />
 
     const placeElement = task.place
-                            ? <Badge color='dark'> {placeToString(task.place)} </Badge>
+                            ? <Badge color='dark' pill> {placeToString(task.place)} </Badge>
                             : !editingPlace 
                                 ? <Badge color='dark' pill onClick={() => setEditingPlace(true)}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus-circle-fill" viewBox="0 0 16 16">

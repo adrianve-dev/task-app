@@ -102,6 +102,7 @@ function App() {
 
   return (
     <>
+      <header className='text-muted py-1'>Typescript React</header>
       <img src={logo} className="App-logo" alt="logo" />
       <h1>Task List</h1>
       <hr style={{width:'100%'}} />
